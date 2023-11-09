@@ -1,6 +1,4 @@
 function [ out ] = sha256()
-    % Konstante, predefinisane initialHash popunjava H array, a constK
-    % popunjava W
     initialHash = ['6a09e667'; 'bb67ae85'; '3c6ef372'; 'a54ff53a'; '510e527f'; '9b05688c'; '1f83d9ab'; '5be0cd19'];
     constK = ['428a2f98'; '71374491'; 'b5c0fbcf'; 'e9b5dba5'; '3956c25b'; '59f111f1'; '923f82a4'; 'ab1c5ed5';
         'd807aa98'; '12835b01'; '243185be'; '550c7dc3'; '72be5d74'; '80deb1fe'; '9bdc06a7'; 'c19bf174';
@@ -12,22 +10,16 @@ function [ out ] = sha256()
         '748f82ee'; '78a5636f'; '84c87814'; '8cc70208'; '90befffa'; 'a4506ceb'; 'bef9a3f7'; 'c67178f2'];
 
     userInput = input('unesi nes pls: ', 's');
-    
-    % Promenljive paddedLength i padded, obe se koriste u parse2blocks
-    % funkciji radi generisanja blockNum blokova duzine 512
     [ paddedLength, padded ] = padding(userInput);
     [ blockNum, M ] = parse2blocks(padded, paddedLength);
     
-    % Inicijalizacija praznih matrica W -> 64 x 32(bit) H -> 8 x 32(bit)
     W = zeros(64, 32);
     H = zeros(8, 32);
     
-    % Popunjavanje H matrice
     for i = 1:8
         H(i, :) = hexToBinaryVector(initialHash(i, :), 32);
     end
     
-    % Po formuli, svaki napravljeni blok treba da se obradi
     for i = 1:blockNum
         % U svakom bloku ima 64bit-a
         for j = 1:64
@@ -42,7 +34,6 @@ function [ out ] = sha256()
             
         end
         
-        % Pravi se 8 promenljivih u koje se smestaju inicijalne vrednosti
         a = H(1, :);
         b = H(2, :);
         c = H(3, :);
@@ -52,11 +43,8 @@ function [ out ] = sha256()
         g = H(7, :);
         h = H(8, :);
         
-        % 64 bit = 1 blok
         for t = 1:64
-            % K je konstanta iz constK niza sa indeksom t u binarnom br sis
             K = hexToBinaryVector(constK(t, :), 32);
-            %T1 = h + 
             temp1 = addMsgSch(h, cSigma1(e), choice(e, f, g), K, W(t, :));
             temp2 = addMsgSch(cSigma0(a), majority(a, b, c));
             h = g;
