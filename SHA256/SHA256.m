@@ -70,13 +70,13 @@ function [ out ] = sha256()
         end
         
         H(1, :) = addMsgSch(H(1, :), a);
-        H(2, :) = addMsgSch(H(1, :), b);
-        H(3, :) = addMsgSch(H(1, :), c);
-        H(4, :) = addMsgSch(H(1, :), d);
-        H(5, :) = addMsgSch(H(1, :), e);
-        H(6, :) = addMsgSch(H(1, :), f);
-        H(7, :) = addMsgSch(H(1, :), g);
-        H(8, :) = addMsgSch(H(1, :), h);
+        H(2, :) = addMsgSch(H(2, :), b);
+        H(3, :) = addMsgSch(H(3, :), c);
+        H(4, :) = addMsgSch(H(4, :), d);
+        H(5, :) = addMsgSch(H(5, :), e);
+        H(6, :) = addMsgSch(H(6, :), f);
+        H(7, :) = addMsgSch(H(7, :), g);
+        H(8, :) = addMsgSch(H(8, :), h);
 
         horz = horzcat(H(1,:), H(2,:), H(3,:), H(4,:), H(5,:), H(6,:) ,H(7,:), H(8,:));
 

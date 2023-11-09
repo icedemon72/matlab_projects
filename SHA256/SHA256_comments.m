@@ -11,8 +11,8 @@ function [ out ] = sha256()
         '19a4c116'; '1e376c08'; '2748774c'; '34b0bcb5'; '391c0cb3'; '4ed8aa4a'; '5b9cca4f'; '682e6ff3';
         '748f82ee'; '78a5636f'; '84c87814'; '8cc70208'; '90befffa'; 'a4506ceb'; 'bef9a3f7'; 'c67178f2'];
 
-    userInput = input('unesi nes pls: ', 's');
-    
+    %userInput = input('unesi nes pls: ', 's');
+    userInput = '123';
     % Promenljive paddedLength i padded, obe se koriste u parse2blocks
     % funkciji radi generisanja blockNum blokova duzine 512
     [ paddedLength, padded ] = padding(userInput);
@@ -74,13 +74,13 @@ function [ out ] = sha256()
         % se u svakom H redu nalazi 32 bita koji ce uzeti heksadecimalnu
         % vrednost Hi = Hi + a ... h
         H(1, :) = addMsgSch(H(1, :), a);
-        H(2, :) = addMsgSch(H(1, :), b);
-        H(3, :) = addMsgSch(H(1, :), c);
-        H(4, :) = addMsgSch(H(1, :), d);
-        H(5, :) = addMsgSch(H(1, :), e);
-        H(6, :) = addMsgSch(H(1, :), f);
-        H(7, :) = addMsgSch(H(1, :), g);
-        H(8, :) = addMsgSch(H(1, :), h);
+        H(2, :) = addMsgSch(H(2, :), b);
+        H(3, :) = addMsgSch(H(3, :), c);
+        H(4, :) = addMsgSch(H(4, :), d);
+        H(5, :) = addMsgSch(H(5, :), e);
+        H(6, :) = addMsgSch(H(6, :), f);
+        H(7, :) = addMsgSch(H(7, :), g);
+        H(8, :) = addMsgSch(H(8, :), h);
 
         % Spajanje H1-8 u jednu matricu
         horz = horzcat(H(1,:), H(2,:), H(3,:), H(4,:), H(5,:), H(6,:) ,H(7,:), H(8,:));
